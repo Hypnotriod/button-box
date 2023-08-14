@@ -1,0 +1,9 @@
+.settings
+Debug/
+*.TMP
+*.dep
+*.bak
+*.uvguix.*
+*.lst
+*.scvd
+.mxproject
