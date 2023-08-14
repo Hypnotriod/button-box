@@ -23,12 +23,19 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "usbd_hid.h"
+#include <stdbool.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+typedef struct {
+      int8_t joyX;
+      int8_t joyY;
+      uint8_t buttons1;
+      uint8_t buttons2;
+      uint8_t buttons3;
+} report_t;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -44,7 +51,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+extern USBD_HandleTypeDef hUsbDeviceFS;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -65,7 +72,7 @@ void SystemClock_Config(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+  report_t report;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -95,6 +102,84 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    report.joyX = 0;
+    report.joyY = 0;
+    report.buttons1 = 0;
+    report.buttons2 = 0;
+    report.buttons3 = 0;
+
+    HAL_GPIO_WritePin(MATRIX_ROW0_GPIO_Port, MATRIX_ROW0_Pin, GPIO_PIN_RESET);
+    if (HAL_GPIO_ReadPin(MATRIX_COL0_GPIO_Port, MATRIX_COL0_Pin) == GPIO_PIN_RESET)
+        report.buttons1 |= 0x01;
+    if (HAL_GPIO_ReadPin(MATRIX_COL1_GPIO_Port, MATRIX_COL1_Pin) == GPIO_PIN_RESET)
+        report.joyY = 127;
+    if (HAL_GPIO_ReadPin(MATRIX_COL2_GPIO_Port, MATRIX_COL2_Pin) == GPIO_PIN_RESET)
+    	report.joyY = -127;
+    if (HAL_GPIO_ReadPin(MATRIX_COL3_GPIO_Port, MATRIX_COL3_Pin) == GPIO_PIN_RESET)
+        report.joyX = -127;
+    if (HAL_GPIO_ReadPin(MATRIX_COL4_GPIO_Port, MATRIX_COL4_Pin) == GPIO_PIN_RESET)
+        report.joyX = 127;
+    if (HAL_GPIO_ReadPin(MATRIX_COL5_GPIO_Port, MATRIX_COL5_Pin) == GPIO_PIN_RESET)
+    	report.buttons1 |= 0x02;
+    if (HAL_GPIO_ReadPin(MATRIX_COL6_GPIO_Port, MATRIX_COL6_Pin) == GPIO_PIN_RESET)
+    	report.buttons1 |= 0x04;
+    HAL_GPIO_WritePin(MATRIX_ROW0_GPIO_Port, MATRIX_ROW0_Pin, GPIO_PIN_SET);
+
+	HAL_GPIO_WritePin(MATRIX_ROW1_GPIO_Port, MATRIX_ROW1_Pin, GPIO_PIN_RESET);
+	if (HAL_GPIO_ReadPin(MATRIX_COL0_GPIO_Port, MATRIX_COL0_Pin) == GPIO_PIN_RESET)
+		report.buttons1 |= 0x08;
+	if (HAL_GPIO_ReadPin(MATRIX_COL1_GPIO_Port, MATRIX_COL1_Pin) == GPIO_PIN_RESET)
+		report.buttons1 |= 0x10;
+	if (HAL_GPIO_ReadPin(MATRIX_COL2_GPIO_Port, MATRIX_COL2_Pin) == GPIO_PIN_RESET)
+		report.buttons1 |= 0x20;
+	if (HAL_GPIO_ReadPin(MATRIX_COL3_GPIO_Port, MATRIX_COL3_Pin) == GPIO_PIN_RESET)
+		report.buttons1 |= 0x40;
+	if (HAL_GPIO_ReadPin(MATRIX_COL4_GPIO_Port, MATRIX_COL4_Pin) == GPIO_PIN_RESET)
+		report.buttons1 |= 0x80;
+	if (HAL_GPIO_ReadPin(MATRIX_COL5_GPIO_Port, MATRIX_COL5_Pin) == GPIO_PIN_RESET)
+		report.buttons2 |= 0x01;
+	if (HAL_GPIO_ReadPin(MATRIX_COL6_GPIO_Port, MATRIX_COL6_Pin) == GPIO_PIN_RESET)
+		report.buttons2 |= 0x02;
+	HAL_GPIO_WritePin(MATRIX_ROW1_GPIO_Port, MATRIX_ROW1_Pin, GPIO_PIN_SET);
+
+	HAL_GPIO_WritePin(MATRIX_ROW2_GPIO_Port, MATRIX_ROW2_Pin, GPIO_PIN_RESET);
+	if (HAL_GPIO_ReadPin(MATRIX_COL0_GPIO_Port, MATRIX_COL0_Pin) == GPIO_PIN_RESET)
+		report.buttons2 |= 0x04;
+	if (HAL_GPIO_ReadPin(MATRIX_COL1_GPIO_Port, MATRIX_COL1_Pin) == GPIO_PIN_RESET)
+		report.buttons2 |= 0x08;
+	if (HAL_GPIO_ReadPin(MATRIX_COL2_GPIO_Port, MATRIX_COL2_Pin) == GPIO_PIN_RESET)
+		report.buttons2 |= 0x10;
+	if (HAL_GPIO_ReadPin(MATRIX_COL3_GPIO_Port, MATRIX_COL3_Pin) == GPIO_PIN_RESET)
+		report.buttons2 |= 0x20;
+	if (HAL_GPIO_ReadPin(MATRIX_COL4_GPIO_Port, MATRIX_COL4_Pin) == GPIO_PIN_RESET)
+		report.buttons2 |= 0x40;
+	if (HAL_GPIO_ReadPin(MATRIX_COL5_GPIO_Port, MATRIX_COL5_Pin) == GPIO_PIN_RESET)
+		report.buttons2 |= 0x80;
+	if (HAL_GPIO_ReadPin(MATRIX_COL6_GPIO_Port, MATRIX_COL6_Pin) == GPIO_PIN_RESET)
+		report.buttons3 |= 0x01;
+	HAL_GPIO_WritePin(MATRIX_ROW2_GPIO_Port, MATRIX_ROW2_Pin, GPIO_PIN_SET);
+
+	HAL_GPIO_WritePin(MATRIX_ROW3_GPIO_Port, MATRIX_ROW3_Pin, GPIO_PIN_RESET);
+	if (HAL_GPIO_ReadPin(MATRIX_COL5_GPIO_Port, MATRIX_COL5_Pin) == GPIO_PIN_RESET)
+		report.buttons3 |= 0x02;
+	if (HAL_GPIO_ReadPin(MATRIX_COL6_GPIO_Port, MATRIX_COL6_Pin) == GPIO_PIN_RESET)
+		report.buttons3 |= 0x04;
+	HAL_GPIO_WritePin(MATRIX_ROW3_GPIO_Port, MATRIX_ROW3_Pin, GPIO_PIN_SET);
+
+	HAL_GPIO_WritePin(MATRIX_ROW4_GPIO_Port, MATRIX_ROW4_Pin, GPIO_PIN_RESET);
+	if (HAL_GPIO_ReadPin(MATRIX_COL5_GPIO_Port, MATRIX_COL5_Pin) == GPIO_PIN_RESET)
+		report.buttons3 |= 0x08;
+	if (HAL_GPIO_ReadPin(MATRIX_COL6_GPIO_Port, MATRIX_COL6_Pin) == GPIO_PIN_RESET)
+		report.buttons3 |= 0x10;
+	HAL_GPIO_WritePin(MATRIX_ROW4_GPIO_Port, MATRIX_ROW4_Pin, GPIO_PIN_SET);
+	if (HAL_GPIO_ReadPin(ENC1_KEY_GPIO_Port, ENC1_KEY_Pin) == GPIO_PIN_RESET)
+		report.buttons3 |= 0x20;
+	if (HAL_GPIO_ReadPin(ENC2_KEY_GPIO_Port, ENC2_KEY_Pin) == GPIO_PIN_RESET)
+		report.buttons3 |= 0x40;
+
+	while (USBD_HID_GetState(&hUsbDeviceFS) != HID_IDLE) {};
+    USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &report, sizeof(report_t));
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
