@@ -332,13 +332,13 @@ __ALIGN_BEGIN static uint8_t HID_GAMEPAD_ReportDesc[HID_MOUSE_REPORT_DESC_SIZE] 
 	0xC0, // END_COLLECTION
 	0x05, 0x09, // USAGE_PAGE (Button)
 	0x19, 0x01, // USAGE_MINIMUM (Button 1)
-	0x29, 0x17, // USAGE_MAXIMUM (Button 23)
+	0x29, 0x1B, // USAGE_MAXIMUM (Button 27)
 	0x15, 0x00, // LOGICAL_MINIMUM (0)
 	0x25, 0x01, // LOGICAL_MAXIMUM (1)
 	0x75, 0x01, // REPORT_SIZE (1)
-	0x95, 0x17, // REPORT_COUNT (23)
+	0x95, 0x1B, // REPORT_COUNT (27)
 	0x81, 0x02, // INPUT (Data,Var,Abs)
-	0x95, 0x01, // REPORT_COUNT (1) bits aligment
+	0x95, 0x05, // REPORT_COUNT (5) remaining bits alignment
 	0x81, 0x03, // INPUT (Constant,Var,Abs)
 	0xC0, // END_COLLECTION
 };
