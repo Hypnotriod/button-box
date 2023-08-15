@@ -73,16 +73,16 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
   if (GPIO_Pin == ENC1_S1_Pin)
   {
     if (ENC1_S2_GPIO_Port->IDR & ENC1_S2_Pin)
-    	encoder1Left += 4;
+      encoder1Left += 2;
     else
-    	encoder1Right += 4;
+      encoder1Right += 2;
   }
   if (GPIO_Pin == ENC2_S1_Pin)
   {
-	if (ENC2_S2_GPIO_Port->IDR & ENC2_S2_Pin)
-		encoder2Left += 4;
-	else
-		encoder2Right += 4;
+    if (ENC2_S2_GPIO_Port->IDR & ENC2_S2_Pin)
+      encoder2Left += 2;
+    else
+      encoder2Right += 2;
   }
 }
 /* USER CODE END 0 */
@@ -137,100 +137,100 @@ int main(void)
 
     HAL_GPIO_WritePin(MATRIX_ROW0_GPIO_Port, MATRIX_ROW0_Pin, GPIO_PIN_RESET);
     if (HAL_GPIO_ReadPin(MATRIX_COL0_GPIO_Port, MATRIX_COL0_Pin) == GPIO_PIN_RESET)
-        report.buttons1 |= 0x01;
+      report.buttons1 |= 0x01;
     if (HAL_GPIO_ReadPin(MATRIX_COL1_GPIO_Port, MATRIX_COL1_Pin) == GPIO_PIN_RESET)
-        report.joyY = 127;
+      report.joyY = 127;
     if (HAL_GPIO_ReadPin(MATRIX_COL2_GPIO_Port, MATRIX_COL2_Pin) == GPIO_PIN_RESET)
-    	report.joyY = -127;
+      report.joyY = -127;
     if (HAL_GPIO_ReadPin(MATRIX_COL3_GPIO_Port, MATRIX_COL3_Pin) == GPIO_PIN_RESET)
-        report.joyX = -127;
+      report.joyX = -127;
     if (HAL_GPIO_ReadPin(MATRIX_COL4_GPIO_Port, MATRIX_COL4_Pin) == GPIO_PIN_RESET)
-        report.joyX = 127;
+      report.joyX = 127;
     if (HAL_GPIO_ReadPin(MATRIX_COL5_GPIO_Port, MATRIX_COL5_Pin) == GPIO_PIN_RESET)
-    	report.buttons1 |= 0x02;
+      report.buttons1 |= 0x02;
     if (HAL_GPIO_ReadPin(MATRIX_COL6_GPIO_Port, MATRIX_COL6_Pin) == GPIO_PIN_RESET)
     	report.buttons1 |= 0x04;
     HAL_GPIO_WritePin(MATRIX_ROW0_GPIO_Port, MATRIX_ROW0_Pin, GPIO_PIN_SET);
 
-	HAL_GPIO_WritePin(MATRIX_ROW1_GPIO_Port, MATRIX_ROW1_Pin, GPIO_PIN_RESET);
-	if (HAL_GPIO_ReadPin(MATRIX_COL0_GPIO_Port, MATRIX_COL0_Pin) == GPIO_PIN_RESET)
-		report.buttons1 |= 0x08;
-	if (HAL_GPIO_ReadPin(MATRIX_COL1_GPIO_Port, MATRIX_COL1_Pin) == GPIO_PIN_RESET)
-		report.buttons1 |= 0x10;
-	if (HAL_GPIO_ReadPin(MATRIX_COL2_GPIO_Port, MATRIX_COL2_Pin) == GPIO_PIN_RESET)
-		report.buttons1 |= 0x20;
-	if (HAL_GPIO_ReadPin(MATRIX_COL3_GPIO_Port, MATRIX_COL3_Pin) == GPIO_PIN_RESET)
-		report.buttons1 |= 0x40;
-	if (HAL_GPIO_ReadPin(MATRIX_COL4_GPIO_Port, MATRIX_COL4_Pin) == GPIO_PIN_RESET)
-		report.buttons1 |= 0x80;
-	if (HAL_GPIO_ReadPin(MATRIX_COL5_GPIO_Port, MATRIX_COL5_Pin) == GPIO_PIN_RESET)
-		report.buttons2 |= 0x01;
-	if (HAL_GPIO_ReadPin(MATRIX_COL6_GPIO_Port, MATRIX_COL6_Pin) == GPIO_PIN_RESET)
-		report.buttons2 |= 0x02;
-	HAL_GPIO_WritePin(MATRIX_ROW1_GPIO_Port, MATRIX_ROW1_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(MATRIX_ROW1_GPIO_Port, MATRIX_ROW1_Pin, GPIO_PIN_RESET);
+    if (HAL_GPIO_ReadPin(MATRIX_COL0_GPIO_Port, MATRIX_COL0_Pin) == GPIO_PIN_RESET)
+      report.buttons1 |= 0x08;
+    if (HAL_GPIO_ReadPin(MATRIX_COL1_GPIO_Port, MATRIX_COL1_Pin) == GPIO_PIN_RESET)
+      report.buttons1 |= 0x10;
+    if (HAL_GPIO_ReadPin(MATRIX_COL2_GPIO_Port, MATRIX_COL2_Pin) == GPIO_PIN_RESET)
+      report.buttons1 |= 0x20;
+    if (HAL_GPIO_ReadPin(MATRIX_COL3_GPIO_Port, MATRIX_COL3_Pin) == GPIO_PIN_RESET)
+      report.buttons1 |= 0x40;
+    if (HAL_GPIO_ReadPin(MATRIX_COL4_GPIO_Port, MATRIX_COL4_Pin) == GPIO_PIN_RESET)
+      report.buttons1 |= 0x80;
+    if (HAL_GPIO_ReadPin(MATRIX_COL5_GPIO_Port, MATRIX_COL5_Pin) == GPIO_PIN_RESET)
+      report.buttons2 |= 0x01;
+    if (HAL_GPIO_ReadPin(MATRIX_COL6_GPIO_Port, MATRIX_COL6_Pin) == GPIO_PIN_RESET)
+      report.buttons2 |= 0x02;
+    HAL_GPIO_WritePin(MATRIX_ROW1_GPIO_Port, MATRIX_ROW1_Pin, GPIO_PIN_SET);
 
-	HAL_GPIO_WritePin(MATRIX_ROW2_GPIO_Port, MATRIX_ROW2_Pin, GPIO_PIN_RESET);
-	if (HAL_GPIO_ReadPin(MATRIX_COL0_GPIO_Port, MATRIX_COL0_Pin) == GPIO_PIN_RESET)
-		report.buttons2 |= 0x04;
-	if (HAL_GPIO_ReadPin(MATRIX_COL1_GPIO_Port, MATRIX_COL1_Pin) == GPIO_PIN_RESET)
-		report.buttons2 |= 0x08;
-	if (HAL_GPIO_ReadPin(MATRIX_COL2_GPIO_Port, MATRIX_COL2_Pin) == GPIO_PIN_RESET)
-		report.buttons2 |= 0x10;
-	if (HAL_GPIO_ReadPin(MATRIX_COL3_GPIO_Port, MATRIX_COL3_Pin) == GPIO_PIN_RESET)
-		report.buttons2 |= 0x20;
-	if (HAL_GPIO_ReadPin(MATRIX_COL4_GPIO_Port, MATRIX_COL4_Pin) == GPIO_PIN_RESET)
-		report.buttons2 |= 0x40;
-	if (HAL_GPIO_ReadPin(MATRIX_COL5_GPIO_Port, MATRIX_COL5_Pin) == GPIO_PIN_RESET)
-		report.buttons2 |= 0x80;
-	if (HAL_GPIO_ReadPin(MATRIX_COL6_GPIO_Port, MATRIX_COL6_Pin) == GPIO_PIN_RESET)
-		report.buttons3 |= 0x01;
-	HAL_GPIO_WritePin(MATRIX_ROW2_GPIO_Port, MATRIX_ROW2_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(MATRIX_ROW2_GPIO_Port, MATRIX_ROW2_Pin, GPIO_PIN_RESET);
+    if (HAL_GPIO_ReadPin(MATRIX_COL0_GPIO_Port, MATRIX_COL0_Pin) == GPIO_PIN_RESET)
+      report.buttons2 |= 0x04;
+    if (HAL_GPIO_ReadPin(MATRIX_COL1_GPIO_Port, MATRIX_COL1_Pin) == GPIO_PIN_RESET)
+      report.buttons2 |= 0x08;
+    if (HAL_GPIO_ReadPin(MATRIX_COL2_GPIO_Port, MATRIX_COL2_Pin) == GPIO_PIN_RESET)
+      report.buttons2 |= 0x10;
+    if (HAL_GPIO_ReadPin(MATRIX_COL3_GPIO_Port, MATRIX_COL3_Pin) == GPIO_PIN_RESET)
+      report.buttons2 |= 0x20;
+    if (HAL_GPIO_ReadPin(MATRIX_COL4_GPIO_Port, MATRIX_COL4_Pin) == GPIO_PIN_RESET)
+      report.buttons2 |= 0x40;
+    if (HAL_GPIO_ReadPin(MATRIX_COL5_GPIO_Port, MATRIX_COL5_Pin) == GPIO_PIN_RESET)
+      report.buttons2 |= 0x80;
+    if (HAL_GPIO_ReadPin(MATRIX_COL6_GPIO_Port, MATRIX_COL6_Pin) == GPIO_PIN_RESET)
+      report.buttons3 |= 0x01;
+    HAL_GPIO_WritePin(MATRIX_ROW2_GPIO_Port, MATRIX_ROW2_Pin, GPIO_PIN_SET);
 
-	HAL_GPIO_WritePin(MATRIX_ROW3_GPIO_Port, MATRIX_ROW3_Pin, GPIO_PIN_RESET);
-	if (HAL_GPIO_ReadPin(MATRIX_COL5_GPIO_Port, MATRIX_COL5_Pin) == GPIO_PIN_RESET)
-		report.buttons3 |= 0x02;
-	if (HAL_GPIO_ReadPin(MATRIX_COL6_GPIO_Port, MATRIX_COL6_Pin) == GPIO_PIN_RESET)
-		report.buttons3 |= 0x04;
-	HAL_GPIO_WritePin(MATRIX_ROW3_GPIO_Port, MATRIX_ROW3_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(MATRIX_ROW3_GPIO_Port, MATRIX_ROW3_Pin, GPIO_PIN_RESET);
+    if (HAL_GPIO_ReadPin(MATRIX_COL5_GPIO_Port, MATRIX_COL5_Pin) == GPIO_PIN_RESET)
+      report.buttons3 |= 0x02;
+    if (HAL_GPIO_ReadPin(MATRIX_COL6_GPIO_Port, MATRIX_COL6_Pin) == GPIO_PIN_RESET)
+      report.buttons3 |= 0x04;
+    HAL_GPIO_WritePin(MATRIX_ROW3_GPIO_Port, MATRIX_ROW3_Pin, GPIO_PIN_SET);
 
-	HAL_GPIO_WritePin(MATRIX_ROW4_GPIO_Port, MATRIX_ROW4_Pin, GPIO_PIN_RESET);
-	if (HAL_GPIO_ReadPin(MATRIX_COL5_GPIO_Port, MATRIX_COL5_Pin) == GPIO_PIN_RESET)
-		report.buttons3 |= 0x08;
-	if (HAL_GPIO_ReadPin(MATRIX_COL6_GPIO_Port, MATRIX_COL6_Pin) == GPIO_PIN_RESET)
-		report.buttons3 |= 0x10;
-	HAL_GPIO_WritePin(MATRIX_ROW4_GPIO_Port, MATRIX_ROW4_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(MATRIX_ROW4_GPIO_Port, MATRIX_ROW4_Pin, GPIO_PIN_RESET);
+    if (HAL_GPIO_ReadPin(MATRIX_COL7_GPIO_Port, MATRIX_COL7_Pin) == GPIO_PIN_RESET)
+      report.buttons3 |= 0x08;
+    if (HAL_GPIO_ReadPin(MATRIX_COL8_GPIO_Port, MATRIX_COL8_Pin) == GPIO_PIN_RESET)
+      report.buttons3 |= 0x10;
+    HAL_GPIO_WritePin(MATRIX_ROW4_GPIO_Port, MATRIX_ROW4_Pin, GPIO_PIN_SET);
 
-	if (HAL_GPIO_ReadPin(ENC1_KEY_GPIO_Port, ENC1_KEY_Pin) == GPIO_PIN_RESET)
-		report.buttons3 |= 0x20;
-	if (HAL_GPIO_ReadPin(ENC2_KEY_GPIO_Port, ENC2_KEY_Pin) == GPIO_PIN_RESET)
-		report.buttons3 |= 0x40;
+    if (HAL_GPIO_ReadPin(ENC1_KEY_GPIO_Port, ENC1_KEY_Pin) == GPIO_PIN_RESET)
+      report.buttons3 |= 0x20;
+    if (HAL_GPIO_ReadPin(ENC2_KEY_GPIO_Port, ENC2_KEY_Pin) == GPIO_PIN_RESET)
+      report.buttons3 |= 0x40;
 
-	if (e1l != encoder1Left)
-	{
-		e1l++;
-		if (e1l % 4 == 1 || e1l % 4 == 2)
-			report.buttons3 |= 0x80;
-	}
-	if (e1r != encoder1Right)
-	{
-		e1r++;
-		if (e1r % 4 == 1 || e1r % 4 == 2)
-			report.buttons4 |= 0x01;
-	}
-	if (e2l != encoder2Left)
-	{
-		e2l++;
-		if (e2l % 4 == 1 || e2l % 4 == 2)
-			report.buttons4 |= 0x02;
-	}
-	if (e2r != encoder2Right)
-	{
-		e2r++;
-		if (e2r % 4 == 1 || e2r % 4 == 2)
-			report.buttons4 |= 0x04;
-	}
+    if (e1l != encoder1Left)
+    {
+      e1l++;
+      if (e1l % 2)
+        report.buttons3 |= 0x80;
+    }
+    if (e1r != encoder1Right)
+    {
+      e1r++;
+      if (e1r % 2)
+        report.buttons4 |= 0x01;
+    }
+    if (e2l != encoder2Left)
+    {
+      e2l++;
+      if (e2l % 2)
+        report.buttons4 |= 0x02;
+    }
+    if (e2r != encoder2Right)
+    {
+      e2r++;
+      if (e2r % 2)
+        report.buttons4 |= 0x04;
+    }
 
-	while (USBD_HID_GetState(&hUsbDeviceFS) != HID_IDLE) {};
+    while (USBD_HID_GetState(&hUsbDeviceFS) != HID_IDLE) {};
     USBD_HID_SendReport(&hUsbDeviceFS, (uint8_t*) &report, sizeof(report_t));
 
     /* USER CODE END WHILE */

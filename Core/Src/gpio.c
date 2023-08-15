@@ -54,9 +54,11 @@ void MX_GPIO_Init(void)
                           |MATRIX_ROW2_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pins : PAPin PAPin PAPin PAPin
-                           PAPin PAPin PAPin */
+                           PAPin PAPin PAPin PAPin
+                           PAPin */
   GPIO_InitStruct.Pin = MATRIX_COL0_Pin|MATRIX_COL1_Pin|MATRIX_COL2_Pin|MATRIX_COL3_Pin
-                          |MATRIX_COL4_Pin|MATRIX_COL5_Pin|MATRIX_COL6_Pin;
+                          |MATRIX_COL4_Pin|MATRIX_COL5_Pin|MATRIX_COL6_Pin|MATRIX_COL7_Pin
+                          |MATRIX_COL8_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);

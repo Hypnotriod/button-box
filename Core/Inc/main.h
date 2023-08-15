@@ -87,6 +87,10 @@ void Error_Handler(void);
 #define MATRIX_ROW1_GPIO_Port GPIOB
 #define MATRIX_ROW2_Pin GPIO_PIN_15
 #define MATRIX_ROW2_GPIO_Port GPIOB
+#define MATRIX_COL7_Pin GPIO_PIN_8
+#define MATRIX_COL7_GPIO_Port GPIOA
+#define MATRIX_COL8_Pin GPIO_PIN_9
+#define MATRIX_COL8_GPIO_Port GPIOA
 #define ENC1_S2_Pin GPIO_PIN_6
 #define ENC1_S2_GPIO_Port GPIOB
 #define ENC2_S2_Pin GPIO_PIN_7

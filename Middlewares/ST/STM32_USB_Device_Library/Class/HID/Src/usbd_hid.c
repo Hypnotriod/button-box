@@ -317,30 +317,30 @@ __ALIGN_BEGIN static uint8_t USBD_HID_DeviceQualifierDesc[USB_LEN_DEV_QUALIFIER_
 
 __ALIGN_BEGIN static uint8_t HID_GAMEPAD_ReportDesc[HID_MOUSE_REPORT_DESC_SIZE]  __ALIGN_END =
 {
-	0x05, 0x01, // USAGE_PAGE (Generic Desktop)
-	0x09, 0x05, // USAGE (Gamepad)
-	0xA1, 0x01, // COLLECTION (Application)
-	0x09, 0x01, // USAGE (Pointer)
-	0xA1, 0x00, // COLLECTION (Physical)
-	0x09, 0x30, // USAGE (X)
-	0x09, 0x31, // USAGE (Y)
-	0x15, 0x81, // Logical Minimum (-127)
-	0x25, 0x7F, // Logical Maximum (127)
-	0x75, 0x08, // REPORT_SIZE (8)
-	0x95, 0x02, // REPORT_COUNT (2)
-	0x81, 0x02, // INPUT (Data,Var,Abs)
-	0xC0, // END_COLLECTION
-	0x05, 0x09, // USAGE_PAGE (Button)
-	0x19, 0x01, // USAGE_MINIMUM (Button 1)
-	0x29, 0x1B, // USAGE_MAXIMUM (Button 27)
-	0x15, 0x00, // LOGICAL_MINIMUM (0)
-	0x25, 0x01, // LOGICAL_MAXIMUM (1)
-	0x75, 0x01, // REPORT_SIZE (1)
-	0x95, 0x1B, // REPORT_COUNT (27)
-	0x81, 0x02, // INPUT (Data,Var,Abs)
-	0x95, 0x05, // REPORT_COUNT (5) remaining bits alignment
-	0x81, 0x03, // INPUT (Constant,Var,Abs)
-	0xC0, // END_COLLECTION
+  0x05, 0x01, // USAGE_PAGE (Generic Desktop)
+  0x09, 0x05, // USAGE (Gamepad)
+  0xA1, 0x01, // COLLECTION (Application)
+  0x09, 0x01, // USAGE (Pointer)
+  0xA1, 0x00, // COLLECTION (Physical)
+  0x09, 0x30, // USAGE (X)
+  0x09, 0x31, // USAGE (Y)
+  0x15, 0x81, // Logical Minimum (-127)
+  0x25, 0x7F, // Logical Maximum (127)
+  0x75, 0x08, // REPORT_SIZE (8)
+  0x95, 0x02, // REPORT_COUNT (2)
+  0x81, 0x02, // INPUT (Data,Var,Abs)
+  0xC0, // END_COLLECTION
+  0x05, 0x09, // USAGE_PAGE (Button)
+  0x19, 0x01, // USAGE_MINIMUM (Button 1)
+  0x29, 0x1B, // USAGE_MAXIMUM (Button 27)
+  0x15, 0x00, // LOGICAL_MINIMUM (0)
+  0x25, 0x01, // LOGICAL_MAXIMUM (1)
+  0x75, 0x01, // REPORT_SIZE (1)
+  0x95, 0x1B, // REPORT_COUNT (27)
+  0x81, 0x02, // INPUT (Data,Var,Abs)
+  0x95, 0x05, // REPORT_COUNT (5) remaining bits alignment
+  0x81, 0x03, // INPUT (Constant,Var,Abs)
+  0xC0, // END_COLLECTION
 };
 
 /**
