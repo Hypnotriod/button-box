@@ -12,6 +12,7 @@
   0x05, 0x01, // USAGE_PAGE (Generic Desktop)
   0x09, 0x05, // 0x05 - USAGE (Gamepad), 0x04 - USAGE (Joystick)
   0xA1, 0x01, // COLLECTION (Application)
+
   // Usage Generic Desktop Pointer
   0x05, 0x01, // USAGE_PAGE (Generic Desktop)
   0x09, 0x01, // USAGE (Pointer)
@@ -27,6 +28,7 @@
   0x95, 0x0x, // REPORT_COUNT (x) (axis count)
   0x81, 0x02, // INPUT (Data,Var,Abs)
   0xC0, // END_COLLECTION
+
   // Usage Simulation Controls
   0x05, 0x02, // USAGE_PAGE (Simulation Controls)
   0x09, 0xXX, // 0xc5 - Brake, 0xc6 - Clutch, 0xc7 - Shifter ... (Please refer to Simulation Controls Page for the full list)
@@ -35,6 +37,7 @@
   0x75, 0x10, // REPORT_SIZE (16)
   0x95, 0x01, // REPORT_COUNT (1)
   0x81, 0x02, // INPUT (Data,Var,Abs)
+
   // Usage Buttons
   0x05, 0x09, // USAGE_PAGE (Button)
   0x19, 0x01, // USAGE_MINIMUM (Button 1)
@@ -46,6 +49,7 @@
   0x81, 0x02, // INPUT (Data,Var,Abs)
   0x95, 0x05, // REPORT_COUNT (5) (remaining bits alignment)
   0x81, 0x03, // INPUT (Constant,Var,Abs)
+
   // end COLLECTION (Application)
   0xC0, // END_COLLECTION
 ```
