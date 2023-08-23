@@ -25,7 +25,7 @@
 //  0x26, 0x00, 0x10, // Logical Maximum (4096) 
   0x75, 0x08, // Report Size (8)
 //  0x75, 0x10, // Report Size (16)
-  0x95, 0x??, // Report Count (x) (axis count)
+  0x95, 0x??, // Report Count (x) (the number of axis)
   0x81, 0x02, // Input (Data,Var,Abs)
   0xC0, // End Collection
 
@@ -45,11 +45,11 @@
   // Usage Buttons
   0x05, 0x09, // Usage Page (Button)
   0x19, 0x01, // Usage Minimum (Button 1)
-  0x29, 0x??, // Usage Maximum (Button x) (buttons count)
+  0x29, 0x??, // Usage Maximum (Button x) (the number of buttons)
   0x15, 0x00, // Logical Minimum (0)
   0x25, 0x01, // Logical Maximum (1)
   0x75, 0x01, // Report Size (1)
-  0x95, 0x??, // Report Count (x) (buttons count)
+  0x95, 0x??, // Report Count (x) (the number of buttons)
   0x81, 0x02, // Input (Data,Var,Abs)
   0x95, 0x??, // Report Count (n) (remaining bits alignment: the number of bytes to accommodate the number of buttons (1 bit per button) multiplied by 8, minus the number of buttons)
   0x81, 0x03, // Input (Constant,Var,Abs)
