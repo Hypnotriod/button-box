@@ -51,7 +51,7 @@
   0x75, 0x01, // Report Size (1)
   0x95, 0x??, // Report Count (x) (buttons count)
   0x81, 0x02, // Input (Data,Var,Abs)
-  0x95, 0x??, // Report Count (n) (remaining bits alignment: the number of bytes to accommodate the number of buttons multiplied by 8, minus the number of buttons)
+  0x95, 0x??, // Report Count (n) (remaining bits alignment: the number of bytes to accommodate the number of buttons (1 bit per button) multiplied by 8, minus the number of buttons)
   0x81, 0x03, // Input (Constant,Var,Abs)
 
   // End Collection (Application)
