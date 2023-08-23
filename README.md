@@ -41,13 +41,13 @@
   // Usage Buttons
   0x05, 0x09, // USAGE_PAGE (Button)
   0x19, 0x01, // USAGE_MINIMUM (Button 1)
-  0x29, 0x1B, // USAGE_MAXIMUM (Button 27) (buttons count)
+  0x29, 0xXX, // USAGE_MAXIMUM (Button x) (buttons count)
   0x15, 0x00, // LOGICAL_MINIMUM (0)
   0x25, 0x01, // LOGICAL_MAXIMUM (1)
   0x75, 0x01, // REPORT_SIZE (1)
-  0x95, 0x1B, // REPORT_COUNT (27) (buttons count)
+  0x95, 0xXX, // REPORT_COUNT (x) (buttons count)
   0x81, 0x02, // INPUT (Data,Var,Abs)
-  0x95, 0x05, // REPORT_COUNT (5) (remaining bits alignment)
+  0x95, 0xXX, // REPORT_COUNT (n) (remaining bits alignment: the number of bytes to accommodate the number of buttons multiplied by 8, minus the number of buttons)
   0x81, 0x03, // INPUT (Constant,Var,Abs)
 
   // end COLLECTION (Application)
